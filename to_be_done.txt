@@ -1,0 +1,9 @@
+1. Some content is unable to see on zooming when display:flex is used. [Done]
+2. Fix responsive layout on mobile/zooming. [Done]
+3. Edit the scroll-bar of Laps & Splits to nice visual. [Done]
+4. Fading effect at the end of Laps & Splits div section. [Done]
+6. Symbols for the actions(start, stop, lap, clear) on the buttons.[Done]
+7. Mistake in differentiating splits. [Done]
+
+8. Save the Laps & Splits data.
+9. Actions(start, stop, lap, reset) on speech recognisation.

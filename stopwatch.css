@@ -1,0 +1,286 @@
+*{
+	outline:none;
+	margin:0px;
+}
+html {
+    height: 100%;
+    overflow: hidden;
+}
+body{
+	background-color:#333333;
+	height: 100%;
+	overflow: auto;
+	scrollbar-gutter: stable;
+}
+.main_body{
+	display:flex;
+	justify-content:center;
+	font-family:Arial;
+	flex-wrap: wrap;
+}
+.stopwatch{
+	flex: 1;
+	position: relative;
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: min(80px,10vh);
+	background-color: #3c3c3c;
+	max-width: max-content;
+	border-radius: clamp(3px, 2vw, 20px);
+	padding: min(10vw,72px) min(6vw, 40px) clamp(18px, 22vw, 140px);
+}
+#run_time{
+	width: max-content;
+	height: min(12vw, 120px);
+	color:gray;
+	font-size: min(12vw, 108px);
+	font-family:'Electrolize', sans-serif;
+	/* Use tabular numbers so the timer digits don't jump around */
+	font-variant-numeric: tabular-nums;
+	font-weight:bolder;
+	display:flex;
+	justify-content:center;
+	cursor:default;
+}
+#run_time > div {
+	display:flex;
+	align-items: end;
+	justify-content: center;
+	line-height: 0.6;
+}
+#t4{
+	color:white;
+	width: min(12vw, 110px);
+	font-size: min(8vw, 66px);
+}
+#t3, #t2, #t1 {
+	width: min(18vw, 170px);
+}
+button{
+	border:none;
+	cursor:pointer;
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-weight:600;
+}
+.buttons{
+	position: absolute;
+	bottom: calc(0px - (clamp(20px, 30vw, 120px) / 2));
+}
+.buttons .side-btns {
+	position: absolute;
+	bottom: calc(50% - (clamp(12px, 14vw, 54px) / 2));
+	left: calc(100% + clamp(5px, 2vw, 26px));
+}
+button#start{
+	background-image:linear-gradient(#00ff4e,#009a20);
+	position: relative;
+}
+button#start:active{
+	background-image:linear-gradient(#00e446,#00e446);
+}
+button#stop{
+	background-image:linear-gradient(#ff1e1e,#d20000);
+	display:none;
+}
+button#stop:active{
+	background-image:linear-gradient(#ff0000,#ff0000);
+}
+button#start,
+button#stop {
+	width: clamp(20px, 30vw, 120px);
+	height: clamp(20px, 30vw, 120px);
+	border-radius: 50%;
+}
+button#reset,
+button#lap {
+	width: clamp(18px, 24vw, 110px);
+	height: clamp(12px, 14vw, 54px);
+	border-radius: 40px;
+	font-size: clamp(5px, 4vw, 16px);
+}
+button#reset{
+	background-color: unset;
+	background-image:linear-gradient(#ffffff,#a9a9a9);
+	color: #333333;
+}
+button#reset:active{
+	background-image:linear-gradient(#cecece,#cecece);
+}
+button#reset.disabled {
+	pointer-events: none;
+	user-select: none;
+	background-color: #4c4c4c;
+	background-image: unset;
+	border: 2px solid #535353;
+}
+button#lap{
+	background-color:#868686;
+	color:white;
+	display:none;
+	align-items: center;
+}
+button#lap:active{
+	background-color:#565656;
+}
+button#save_laps_data{
+	background-color:#ffffff20;
+	color:white;
+	width: max-content;
+	height:30px;
+	border:1px solid #ffffff11;
+	border-radius:20px;
+	display:initial;
+	overflow:hidden;
+	padding: 0 15px;
+}
+button#save_laps_data:hover{
+	background-color:#ffffff33;
+}
+button#save_laps_data:active{
+	background-color:#ffffff00;
+}
+div#stopped{
+	width:0px;
+	height:0px;
+	margin-left: min(2vw, 10px);
+	border-left: clamp(7px, 10vw, 36px) solid white;
+	border-top: clamp(5px, 6vw, 24px) solid #ffffff00;
+	border-bottom: clamp(5px, 6vw, 24px) solid #ffffff00;
+	position: absolute;
+	top: calc(50% - clamp(5px, 6vw, 24px));
+}
+div#playing{
+	width:0px;
+	height:50px;
+	border-left:35px double white;
+	position: absolute;
+	top: 29%;
+}
+.sub_main_body{
+	display:flex;
+	flex-flow:row wrap;
+	position:absolute;
+	justify-content:center;
+	height: 100%;
+}
+.dump{
+	width:900px;
+	height:570px;
+}
+#laps_splits_readings{
+	width: max-content;
+	height: 100%;
+	display:none;
+	flex-direction:column;
+	padding: 40px 20px;
+	box-sizing: border-box;
+	position: absolute;
+	right: 20px;
+}
+#laps_splits_readings .head{
+	user-select: none;
+	padding-bottom:10px;
+	display: flex;
+	gap: 20px;
+}
+#readings{
+	color:white;
+	cursor:default;
+	overflow-x:hidden;
+	overflow-y: scroll;
+	display:flex;
+	flex-direction:column;
+}
+.laps-style{
+	margin-bottom:0.5em;
+}
+.splits-style{
+	font-size:20px;
+	font-weight:700;
+}
+#fade_effect{
+	background-image:linear-gradient(#33333300 5%,#333333 95%);
+	width: 100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	display:none;
+}
+
+/* ------------------------------------------------ */
+/* Scrollbar CSS */
+/* ------------------------------------------------ */
+/* YOUR WEBKIT STYLES (For Chrome, Edge, Safari) which has Legacy Support*/
+*::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+*::-webkit-scrollbar-track {
+    background-color:rgba(0,0,0,0);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #707070;
+    background-clip: padding-box;
+    border-radius: 40px;
+    border: 4px solid transparent;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #707070;
+}
+*::-webkit-scrollbar-thumb:active {
+    background-color: #707070;
+    cursor: grabbing;
+}
+*::-webkit-scrollbar-button {
+    display:none;
+}
+*::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/* THE FIREFOX ONLY FIX */
+/* This block executes ONLY if the browser lacks legacy webkit support */
+@supports (scrollbar-width:thin) and (not selector(::-webkit-scrollbar)) {
+    /* Supports Modern Standard (Firefox, Safari 18.4+, Chrome 121+) - But now used only for Firefox */
+    * {
+        scrollbar-width: thin;
+    }
+}
+
+/* ------------------------------------------------ */
+/* Resposive CSS */
+/* ------------------------------------------------ */
+@media (max-width: 1160px) {
+	.main_body {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+    #laps_splits_readings {
+        position: relative;
+        max-height: 500px;
+        margin-top: clamp(20px, 30vw, 120px);
+        padding-top: 0;
+    }
+}
+
+
+/* ------------------------------------------------ */
+/* Font CSS */
+/* ------------------------------------------------ */
+@font-face {
+  font-family: 'Electrolize';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  /* Fallback chain: Checks system first, then falls back to local WOFF2, then TTF if needed */
+  src: local('Electrolize'), 
+  	   local('Electrolize-Regular'), 
+	   url('/fonts/electrolize-regular.woff2') format('woff2'), /* Modern browsers download this first.	Maximizes loading speed and saves data. */
+	   url('/fonts/electrolize-regular.ttf') format('ttf'); /* Older browsers skip WOFF2 and download this. Ensures the font doesn't break on old devices. */
+}

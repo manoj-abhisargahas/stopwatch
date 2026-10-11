@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>StopWatch</title>
+		<script src='stopwatch.js'></script>
+		<link href='stopwatch.css' rel='stylesheet'></link>
+		<style id="show_none"></style>
+		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width, height=device-height"/>
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet"> -->
+	</head>
+	<body>
+		<div class="main_body" align="center">
+			<div class="stopwatch">
+				<!-- <div class="round"></div> -->
+				<div id="run_time">
+					<div id="t1" title="Hours">00</div><div>:</div>
+					<div id="t2" title="Minutes">00</div><div>:</div>
+					<div id="t3" title="Seconds">00</div><div>.</div>
+					<div id="t4" title="Centiseconds">00</div>
+				</div>
+				<div class="buttons">
+					<div class="main-btns">
+						<button id="start" onclick="startT()" title="start"><div id="stopped"></div></button>
+						<button id="stop" onclick="stopT()" title="stop"><div id="playing"></div></button>
+					</div>
+					<div class="side-btns">
+						<button id="reset" class="disabled" onclick="clear_t()" title="Reset StopWatch">Reset</button>
+						<button id="lap" onclick="splitLapT()" title="Lap">Lap</button>
+					</div>
+				</div>
+			</div>
+			<div id="laps_splits_readings" align="left">
+				<div class="head">
+					<div style="float:left">
+						<p class="splits-style" id="info" style="color:gray">Splits</p>
+						<p class="laps-style" style="color:gray">laps</p>
+					</div>
+					<div align="right">
+						<button id="save_laps_data" onclick="saveLapsData()">Save</button>
+					</div>
+				</div>
+				<div id='readings'></div>
+				<!--<div id='readings' onmouseover="scroll_show()" onmouseout="scroll_none()" ></div>-->
+				<div id="fade_effect"></div>
+			</div>
+		</div>
+	</body>
+</html>

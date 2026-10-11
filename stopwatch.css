@@ -67,14 +67,27 @@ button{
 	align-items:center;
 	font-weight:600;
 }
-.buttons{
+.buttons {
+	--main-btn-width: clamp(20px, 30vw, 120px);
+	--main-btn-height: clamp(20px, 30vw, 120px);
+	--side-btn-width: clamp(18px, 24vw, 110px);
+	--side-btn-height: clamp(12px, 14vw, 54px);
+	--btn-border: clamp(2px, 2vw, 9px);
 	position: absolute;
-	bottom: calc(0px - (clamp(20px, 30vw, 120px) / 2));
+	bottom: calc(0px - (var(--main-btn-width) / 2) - var(--btn-border));
+}
+.buttons .main-btns,
+.buttons .side-btns {
+    border: var(--btn-border) solid #333333;
+}
+.buttons .main-btns {
+    border-radius: 50%;
 }
 .buttons .side-btns {
 	position: absolute;
-	bottom: calc(50% - (clamp(12px, 14vw, 54px) / 2));
+	bottom: calc(50% - (var(--side-btn-height) / 2) - var(--btn-border));
 	left: calc(100% + clamp(5px, 2vw, 26px));
+	border-radius: 40px;
 }
 button#start{
 	background-image:linear-gradient(#00ff4e,#009a20);
@@ -92,14 +105,14 @@ button#stop:active{
 }
 button#start,
 button#stop {
-	width: clamp(20px, 30vw, 120px);
-	height: clamp(20px, 30vw, 120px);
+	width: var(--main-btn-width);
+	height: var(--main-btn-height);
 	border-radius: 50%;
 }
 button#reset,
 button#lap {
-	width: clamp(18px, 24vw, 110px);
-	height: clamp(12px, 14vw, 54px);
+	width: var(--side-btn-width);
+	height: var(--side-btn-height);
 	border-radius: 40px;
 	font-size: clamp(5px, 4vw, 16px);
 }
